@@ -7,6 +7,7 @@
 #define _ASM_RISCV_TIMEX_H
 
 #include <asm/csr.h>
+#include <asm/io.h>
 
 typedef unsigned long cycles_t;
 
