@@ -8,6 +8,7 @@ RISC-V architecture
     acpi
     boot
     boot-image-header
+    branching
     vm-layout
     hwprobe
     patch-acceptance
