@@ -370,6 +370,12 @@ static void check_vector_unaligned_access(struct work_struct *work __always_unus
 		(speed ==  RISCV_HWPROBE_MISALIGNED_VECTOR_FAST) ? "fast" : "slow");
 
 	per_cpu(vector_misaligned_access, cpu) = speed;
+	/*
+	 * Ensure the store that sets up the misaligned access value is
+	 * visible before it is used by the other CPUs.  This orders with the
+	 * atomic_dec_and_test() in riscv_hwprobe_complete_async_probe().
+	 */
+	smp_wmb();
 
 free:
 	__free_pages(page, MISALIGNED_BUFFER_ORDER);
